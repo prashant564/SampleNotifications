@@ -16,8 +16,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //STEP 1
         createNotificationChannel(getString(R.string.notification_channel_id),
         getString(R.string.notification_channel_name))
+
+        // FCM STEP 2
+        createNotificationChannel("fcm_channel","fcm_test")
+
+        // STEP 4
         binding.btnSendNotification.setOnClickListener {
             val notificationManager = ContextCompat.getSystemService(this,
                 NotificationManager::class.java) as NotificationManager
@@ -25,7 +31,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun createNotificationChannel(channelId:String, channelName: String){
+    // step 2
+    private fun createNotificationChannel(channelId:String, channelName: String){
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             val notificationChannel = NotificationChannel(channelId,channelName,
             NotificationManager.IMPORTANCE_HIGH).apply {
@@ -39,7 +46,6 @@ class MainActivity : AppCompatActivity() {
             val notificationManager = getSystemService(
                     NotificationManager::class.java
             )
-
             notificationManager.createNotificationChannel(notificationChannel)
         }
     }

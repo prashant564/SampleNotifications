@@ -11,6 +11,7 @@ private val NOTIFICATION_ID = 0
 private val REQUEST_CODE = 0
 private val FLAGS = 0
 
+//STEP 4
 fun NotificationManager.sendNotification(messageBody:String, applicationContext: Context){
     val contentIntent = Intent(applicationContext, MainActivity::class.java)
     val contentPendingIntent = PendingIntent.getActivity(
